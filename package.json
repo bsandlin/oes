@@ -1,0 +1,30 @@
+{
+    "name": "oes",
+    "version": "1.0.0",
+    "description": "",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack"
+    },
+    "keywords": [],
+    "author": "sec-gov",
+    "license": "CC0-1.0",
+    "devDependencies": {
+        "@types/papaparse": "^5.3.15",
+        "html-webpack-plugin": "^5.6.3",
+        "ts-loader": "^9.5.2",
+        "typescript": "^5.8.3",
+        "webpack": "^5.38.1",
+        "webpack-cli": "^4.10.0"
+    },
+    "dependencies": {
+        "child_process": "^1.0.2",
+        "commander": "^10.0.1",
+        "fs": "0.0.1-security",
+        "lodash": "^4.17.21",
+        "papaparse": "^5.5.2",
+        "path": "^0.12.7",
+        "process": "^0.11.10"
+    }
+}

@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"lib": [
+			"ES5",
+			"DOM"
+		],
+		"module": "Node16",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"allowJs": true,
+		"moduleResolution": "node16",
+		"outDir": "./dist",
+		"noImplicitAny": true
+	},
+	"exclude": ["node_modules","dist"]
+}
