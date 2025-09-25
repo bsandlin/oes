@@ -1,4 +1,4 @@
-# OES - Order Execution Summary Report - SEC Rule 605
+# OES - Order Execution Summary Report - SEC RULE 605(a)(2)
 
 ## Instructions for the report renderer
 
