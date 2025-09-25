@@ -125,19 +125,6 @@ var SchemaContent: {
 						"dc:description": "Y: NMS stocks that are included in the S&P 500 Index as of the first day of that month; N: other NMS stocks"
 					},
 					{
-						"name": "OrderType",
-						"rdfs:comment": [{ "=fc": 7 }],
-						"required": true,
-						"datatype": {
-							"base": "token",
-							"format": "MXXNN|LYNNN"
-						},
-						"titles": [
-							"Order Type"
-						],
-						"dc:description": "MXXNN: market orders; LYNNN: marketable limit orders. Exclude other order types (e.g. IOC, FOK)."
-					},
-					{
 						"name": "OrderSize",
 						"rdfs:comment": [{ "=fc": 6 }],
 						"datatype": {
@@ -149,6 +136,19 @@ var SchemaContent: {
 							"Order Size (USD)"
 						],
 						"dc:description": "0: less than $250; 250: $250 to less than $1,000, 1000: $1,000 to less than $5,000; 5000: $5,000 to less than $10,000, 10000: $10,000 to less than $20,000; 20000: $20,000 to less than $50,000; 50000: $50,000 to less than $200,000; 200000: $200,000 or more; 199999: all order sizes combined, excluding orders with a notional value of $200,000 or more"
+					},
+					{
+						"name": "OrderType",
+						"rdfs:comment": [{ "=fc": 7 }],
+						"required": true,
+						"datatype": {
+							"base": "token",
+							"format": "M|ML"
+						},
+						"titles": [
+							"Order Type"
+						],
+						"dc:description": "M: market orders; ML: marketable limit orders. Exclude other order types, e.g. IOC, FOK."
 					},
 					{
 						"name": "AvgOrderQty",
@@ -360,12 +360,8 @@ const NUMBER_STYLE: { [key: string]: Intl.NumberFormat } = { // currency is USD,
 
 const SPECIAL_FORMAT: { [key: string]: CallableFunction } = {
 	"OrderType":
-		function (x: string) { // take first letter of MXXNN or LYNNN
-			switch (x) {
-				case "MXXNN": return "M";
-				case "LYNNN": return "ML";
-				default: return x;
-			}
+		function (x: string) { 
+			return x;
 		}
 	, "OrderSize":
 		function (x: string) {
@@ -446,8 +442,8 @@ const OeTable = [ /*  name, alignment, width, pretty name, format code.  ORDER i
 	// ['RprtEntityCd', 'center', 2*MINCOLWIDTH, NL_repeat(0) + 'Reporting Entity Code', null],
 	// ['RptDate', 'center', 2*MINCOLWIDTH, NL_repeat(4) + 'Report Date', 'special'],
 	['Sp500', 'center', 1 * MINCOLWIDTH, NL_repeat(3) + 'S&P 500 Flag', null],
-	['OrderType', 'center', 3 * MINCOLWIDTH, NL_repeat(3) + 'Order Type (M-Mkt; ML-Mktbl Lmt)', 'special'],
 	['OrderSize', 'center', 4 * MINCOLWIDTH, NL_repeat(5) + 'Order Size (USD)', 'special'],
+	['OrderType', 'center', 3 * MINCOLWIDTH, NL_repeat(3) + 'Order Type (M-Mkt; ML-Mktbl Lmt)', 'special'],
 	['AvgOrderQty', 'right', 3 * MINCOLWIDTH, NL_repeat(4) + 'Average Order Size (Shares)', "2"],
 	['AvgOrderSize', 'right', 3 * MINCOLWIDTH, NL_repeat(2) + 'Average Notional Order Size (USD)', "$2"],
 	['ExctdOrderMidPtAvg', 'right', 3 * MINCOLWIDTH, NL_repeat(2) + 'Share-weighted Average Midpoint', "$2"],
